@@ -1,9 +1,12 @@
-// store.js
 import { configureStore } from '@reduxjs/toolkit';
-import venueReducer from './venueSlice';
+import succulentPlantsReducer from './succulentPlantsReducerSlice';
+import lowLightPlants from './lowLightPlantsSlice';
+import airPurifyingPlantsReducer from './airPurifyingPlantsSlice';
 
 export default configureStore({
   reducer: {
-    venue: venueReducer,
+    succulentPlant: succulentPlantsReducer,
+    lowLlightPlant: lowLightPlantsReducer,
+    airPurifyingPlant: airPurifyingPlantsReducer,
   },
 });
