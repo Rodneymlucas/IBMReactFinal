@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./ConferenceEvent.css";
 import TotalCost from "./TotalCost";
-import { incrementQuantity, decrementQuantity } from "./airPurifyingPlantsSlice";
-import { incrementQuantity, decrementQuantity } from "./lowLightPlantsSlice";
+import { incrementAirPurifyingPlantsQuantity, decrementAirPurifyingPlantsQuantity } from "./airPurifyingPlantsSlice";
+import { incrementLowLightPlantsQuantity, decrementLowLightPlantsQuantity } from "./lowLightPlantsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity } from "./succulentPlantsSlice";
+import { incrementSucculentPlantsQuantity, decrementSucculentPlantsQuantity } from "./succulentPlantsSlice";
 
 const ConferenceEvent = () => {
     const [showItems, setShowItems] = useState(false);
@@ -33,12 +33,12 @@ const ConferenceEvent = () => {
           dispatch(decrementQuantity(index));
         }
       };
-    const handleIncrementAvQuantity = (index) => {
-    dispatch(incrementAvQuantity(index));
+    const handleIncrementLowLightPlantQuantity = (index) => {
+    dispatch(incrementLowLightPlantQuantity(index));
 };
 
-const handleDecrementAvQuantity = (index) => {
-    dispatch(decrementAvQuantity(index));
+const handleDecrementLowLightPlantQuantity = (index) => {
+    dispatch(decrementLowLightPlantQuantity(index));
 };
 
 const handleMealSelection = (index) => {
@@ -272,7 +272,7 @@ const navigateToProducts = (idType) => {
             <div className="inner">
                 <input type="checkbox" id={ `meal_${index}` }
                     checked={ item.selected }
-                    onChange={() => handleMealSelection(index)}
+                    onChange={() => handleAirPurifyingPlantlSelection(index)}
                  />
                 <label htmlFor={`meal_${index}`}> {item.name} </label>
             </div>

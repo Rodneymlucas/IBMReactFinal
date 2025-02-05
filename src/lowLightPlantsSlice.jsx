@@ -20,13 +20,13 @@ export const lowLightPlantsSlice = createSlice({
 
 
   reducers: {
-    incrementQuantity: (state, action) => {
+    incrementLowLightPlantsQuantity: (state, action) => {
         const item = state[action.payload];
         if (item) {
             item.quantity++;
         }
     },
-    decrementQuantity: (state, action) => {
+    decrementLowLightPlantsQuantity: (state, action) => {
         const item = state[action.payload];
         if (item && item.quantity > 0) {
             item.quantity--;
@@ -35,6 +35,6 @@ export const lowLightPlantsSlice = createSlice({
   },
 });
 
-export const { incrementQuantity, decrementQuantity } = lowLightPlantsSlice.actions;
+export const { incrementLowLightPlantsQuantity, decrementLowLightPlantsQuantity } = lowLightPlantsSlice.actions;
 
 export default lowLightPlantsSlice.reducer;

@@ -20,13 +20,13 @@ export const succulentPlantsSlice = createSlice({
   ],
   reducers: {
    
-    incrementQuantity: (state, action) => {
+    incrementSucculentPlantsQuantity: (state, action) => {
       const { payload: index } = action;
       if (state[index]) {
         state[index].quantity++;
       }
     },
-    decrementQuantity: (state, action) => {
+    decrementSucculentPlantsQuantity: (state, action) => {
       const { payload: index } = action;
       if (state[index] && state[index].quantity > 0) {
         state[index].quantity--;
@@ -35,6 +35,6 @@ export const succulentPlantsSlice = createSlice({
   },
 });
 
-export const { incrementQuantity, decrementQuantity } = succulentPlantsSlice.actions;
+export const { incrementSucculentPlantsQuantity, decrementSucculentPlantsQuantity } = succulentPlantsSlice.actions;
 
 export default succulentPlantsSlice.reducer;

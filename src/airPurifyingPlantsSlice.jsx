@@ -18,13 +18,13 @@ export const airPurifyingPlantsSlice = createSlice({
   ],
   reducers: {
    
-    incrementQuantity: (state, action) => {
+    incrementAirPurifyingPlantsQuantity: (state, action) => {
       const { payload: index } = action;
       if (state[index]) {
         state[index].quantity++;
       }
     },
-    decrementQuantity: (state, action) => {
+    decrementAirPurifyingPlantsQuantity: (state, action) => {
       const { payload: index } = action;
       if (state[index] && state[index].quantity > 0) {
         state[index].quantity--;
@@ -33,6 +33,6 @@ export const airPurifyingPlantsSlice = createSlice({
   },
 });
 
-export const { incrementQuantity, decrementQuantity } = airPurifyingPlantsSlice.actions;
+export const { incrementAirPurifyingPlantsQuantity, decrementAirPurifyingPlantsQuantity } = airPurifyingPlantsSlice.actions;
 
 export default airPurifyingPlantsSlice.reducer;
