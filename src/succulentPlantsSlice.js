@@ -1,8 +1,8 @@
-// venueSlice.js
+// was venueSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 export const succulentPlantsSlice = createSlice({
-  name: "venue",
+  name: "succulentPlant",
   initialState: [
     {
       img: "https://pixabay.com/images/download/chairs-2181916_640.jpg",

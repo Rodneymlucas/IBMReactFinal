@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-export const mealsSlice = createSlice({
-  name: 'meals',
+export const airPurifyingPlantsSlice = createSlice({
+  name: 'airPurifyingPlant',
   initialState: [
     {
       img: "",
@@ -17,11 +17,22 @@ export const mealsSlice = createSlice({
 
   ],
   reducers: {
-    toggleMealSelection: (state, action) => {
-        state[action.payload].selected = !state[action.payload].selected;
-  },
+   
+    incrementQuantity: (state, action) => {
+      const { payload: index } = action;
+      if (state[index]) {
+        state[index].quantity++;
+      }
+    },
+    decrementQuantity: (state, action) => {
+      const { payload: index } = action;
+      if (state[index] && state[index].quantity > 0) {
+        state[index].quantity--;
+      }
+    },
   },
 });
 
-export const { toggleMealSelection } = mealsSlice.actions;
-export default mealsSlice.reducer;
+export const { incrementQuantity, decrementQuantity } = airPurifyingPlantsSlice.actions;
+
+export default airPurifyingPlantsSlice.reducer;

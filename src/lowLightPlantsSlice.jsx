@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const avSlice = createSlice({
+export const lowLightPlantsSlice = createSlice({
   name: "av",
   initialState: [
         {
@@ -20,13 +20,13 @@ export const avSlice = createSlice({
 
 
   reducers: {
-    incrementAvQuantity: (state, action) => {
+    incrementQuantity: (state, action) => {
         const item = state[action.payload];
         if (item) {
             item.quantity++;
         }
     },
-    decrementAvQuantity: (state, action) => {
+    decrementQuantity: (state, action) => {
         const item = state[action.payload];
         if (item && item.quantity > 0) {
             item.quantity--;
@@ -35,6 +35,6 @@ export const avSlice = createSlice({
   },
 });
 
-export const { incrementAvQuantity, decrementAvQuantity } = avSlice.actions;
+export const { incrementQuantity, decrementQuantity } = lowLightPlantsSlice.actions;
 
-export default avSlice.reducer;
+export default lowLightPlantsSlice.reducer;

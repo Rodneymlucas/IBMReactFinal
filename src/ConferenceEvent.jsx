@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import "./ConferenceEvent.css";
 import TotalCost from "./TotalCost";
-import { toggleMealSelection } from "./mealsSlice";
-import { incrementAvQuantity, decrementAvQuantity } from "./avSlice";
+import { incrementQuantity, decrementQuantity } from "./airPurifyingPlantsSlice";
+import { incrementQuantity, decrementQuantity } from "./lowLightPlantsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { incrementQuantity, decrementQuantity } from "./venueSlice";
+import { incrementQuantity, decrementQuantity } from "./succulentPlantsSlice";
 
 const ConferenceEvent = () => {
     const [showItems, setShowItems] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
-    const venueItems = useSelector((state) => state.venue);
-    const avItems = useSelector((state) => state.av);
-    const mealsItems = useSelector((state) => state.meals);
+    const succulentPlantItems = useSelector((state) => state.succulentPlant);
+    const lowLightPlantItems = useSelector((state) => state.lowLightPlant);
+    const airPurifyingPlantItems = useSelector((state) => state.airPurifyingPlant);
     const dispatch = useDispatch();
-    const remainingAuditoriumQuantity = 3 - venueItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity;
+    //const remainingAuditoriumQuantity = 3 - succulentPlantItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity;
 
     
     const handleToggleItems = () => {
@@ -22,14 +22,14 @@ const ConferenceEvent = () => {
     };
 
     const handleAddToCart = (index) => {
-        if (venueItems[index].name === "Auditorium Hall (Capacity:200)" && venueItems[index].quantity >= 3) {
+        if (succulentPlantItems[index].name === "Auditorium Hall (Capacity:200)" && succulentPlantItems[index].quantity >= 3) {
           return; 
         }
         dispatch(incrementQuantity(index));
       };
     
       const handleRemoveFromCart = (index) => {
-        if (venueItems[index].quantity > 0) {
+        if (succulentPlantItems[index].quantity > 0) {
           dispatch(decrementQuantity(index));
         }
       };
@@ -42,7 +42,7 @@ const handleDecrementAvQuantity = (index) => {
 };
 
 const handleMealSelection = (index) => {
-    const item = mealsItems[index];
+    const item = airPurifyingPlantItems[index];
     if (item.selected && item.type === "mealForPeople") {
         // Ensure numberOfPeople is set before toggling selection
         const newNumberOfPeople = item.selected ? numberOfPeople : 0;
@@ -107,24 +107,24 @@ const getItemsFromTotalCost = () => {
     };
     const calculateTotalCost = (section) => {
         let totalCost = 0;
-        if (section === "succulentplant") {
+        if (section === "succulentPlant") {
             succulentPlantItems.forEach((item) => {
                 totalCost += item.cost * item.quantity;
             });
-        } else if (section === "lowlightplant") {
+        } else if (section === "lowLightPlant") {
             lowLigthPlantItems.forEach((item) => {
                 totalCost += item.cost * item.quantity;
             });
-        } else if (section === "airpurifyingplant") {
+        } else if (section === "airPurifyingPlant") {
             airPurifyingPlantItems.forEach((item) => {
               totalCost += item.cost * item.quantity;
             });
         }
     return totalCost;
     };
-const succulentPlantTotalCost = calculateTotalCost("succulentPlant");
-const lowLightPlantTotalCost = calculateTotalCost("lowLightPlant");
-const airPurifyingPlantTotalCost = calculateTotalCost("airPurifyingPlant");
+const succulentPlantsTotalCost = calculateTotalCost("succulentPlant");
+const lowLightPlantsTotalCost = calculateTotalCost("lowLightPlant");
+const airPurifyingPlantsTotalCost = calculateTotalCost("airPurifyingPlant");
 
 const navigateToProducts = (idType) => {
         if (idType == '#succulent' || idType == '#lowlight' || idType == '#airpurifying') {
@@ -145,9 +145,9 @@ const navigateToProducts = (idType) => {
                 <div className="company_logo">Phoenix House Plant Nursery</div>
                 <div className="left_navbar">
                     <div className="nav_links">
-                        <a href="#succulentplant" onClick={() => navigateToProducts("#succulentplan")} >Succulent Plants</a>
-                        <a href="#lowlight" onClick={() => navigateToProducts('#lowlight')}>Low Light Plants</a>
-                        <a href="#airpurifying" onClick={() => navigateToProducts('#airpurifying')}>Air Purifying Plants</a>
+                        <a href="#succulentplant" onClick={() => navigateToProducts("#succulentplant")} >Succulent Plants</a>
+                        <a href="#lowlightplant" onClick={() => navigateToProducts('#lowlightplant')}>Low Light Plants</a>
+                        <a href="#airpurifyingplant" onClick={() => navigateToProducts('#airpurifyingplant')}>Air Purifying Plants</a>
                     </div>
                     <button className="details_button" onClick={() => setShowItems(!showItems)}>
                         Shopping Cart
@@ -165,7 +165,7 @@ const navigateToProducts = (idType) => {
           <h1>Succulent Plants Selection</h1>
         </div>
         <div className="venue_selection">
-          {venueItems.map((item, index) => (
+          {succulentPlantItems.map((item, index) => (
             <div className="venue_main" key={index}>
               <div className="img">
                 <img src={item.img} alt={item.name} />
@@ -173,17 +173,17 @@ const navigateToProducts = (idType) => {
               <div className="text">{item.name}</div>
               <div>${item.cost}</div>
      <div className="button_container">
-        {venueItems[index].name === "Auditorium Hall (Capacity:200)" ? (
+        {succulentPlantItems[index].name === "Auditorium Hall (Capacity:200)" ? (
 
           <>
           <button
-            className={venueItems[index].quantity === 0 ? "btn-warning btn-disabled" : "btn-minus btn-warning"}
+            className={succulentPlantItems[index].quantity === 0 ? "btn-warning btn-disabled" : "btn-minus btn-warning"}
             onClick={() => handleRemoveFromCart(index)}
           >
             &#8211;
           </button>
           <span className="selected_count">
-            {venueItems[index].quantity > 0 ? ` ${venueItems[index].quantity}` : "0"}
+            {succulentPlantItems[index].quantity > 0 ? ` ${succulentPlantItems[index].quantity}` : "0"}
           </span>
           <button
             className={remainingAuditoriumQuantity === 0? "btn-success btn-disabled" : "btn-success btn-plus"}
@@ -195,16 +195,16 @@ const navigateToProducts = (idType) => {
         ) : (
           <div className="button_container">
            <button
-              className={venueItems[index].quantity ===0 ? " btn-warning btn-disabled" : "btn-warning btn-plus"}
+              className={succulentPlantItems[index].quantity ===0 ? " btn-warning btn-disabled" : "btn-warning btn-plus"}
               onClick={() => handleRemoveFromCart(index)}
             >
                &#8211;
             </button>
             <span className="selected_count">
-              {venueItems[index].quantity > 0 ? ` ${venueItems[index].quantity}` : "0"}
+              {succulentPlantItems[index].quantity > 0 ? ` ${succulentPlantItems[index].quantity}` : "0"}
             </span>
             <button
-              className={venueItems[index].quantity === 10 ? " btn-success btn-disabled" : "btn-success btn-plus"}
+              className={succulentPlantItems[index].quantity === 10 ? " btn-success btn-disabled" : "btn-success btn-plus"}
               onClick={() => handleAddToCart(index)}
             >
              &#43;
@@ -230,7 +230,7 @@ const navigateToProducts = (idType) => {
 
                                 </div>
                                 <div className="addons_selection">
-                                {avItems.map((item, index) => (
+                                {lowLightPlantItems.map((item, index) => (
     <div className="av_data venue_main" key={index}>
         <div className="img">
             <img src={item.img} alt={item.name} />
@@ -267,7 +267,7 @@ const navigateToProducts = (idType) => {
 </div>
                                 </div>
                                 <div className="meal_selection">
-    {mealsItems.map((item, index) => (
+    {airPurifyingPlantItems.map((item, index) => (
         <div className="meal_item" key={index} style={{ padding: 15 }}>
             <div className="inner">
                 <input type="checkbox" id={ `meal_${index}` }
