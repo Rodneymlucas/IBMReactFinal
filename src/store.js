@@ -6,7 +6,7 @@ import airPurifyingPlantsReducer from './airPurifyingPlantsSlice';
 export default configureStore({
   reducer: {
     succulentPlant: succulentPlantsReducer,
-    lowLlightPlant: lowLightPlantsReducer,
+    lowLightPlant: lowLightPlantsReducer,
     airPurifyingPlant: airPurifyingPlantsReducer,
   },
 });

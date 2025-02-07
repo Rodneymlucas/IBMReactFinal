@@ -30,8 +30,8 @@ function App() {
       </header>
 
       <div className={`event-list-container ${showVenue ? 'visible' : ''}`}>
-      {/*  <ConferenceEvent /> */}
-      <p>Conference Envent tag has been commented out for now</p>
+      <ConferenceEvent />
+      {/*<p>Conference Envent tag has been commented out for now</p>*/}
       </div>
     </>
   );

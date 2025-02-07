@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const lowLightPlantsSlice = createSlice({
-  name: "av",
+  name: "lowLightPlant",
   initialState: [
         {
-        img: "",
+        img: "./src/assets/pexels-rosana-solis-385478-3718448.jpg",
         name: "Snake plant",
         cost: 10,
         quantity: 0,
     },
     {
-        img: "",
+        img: "./src/assets/pexels-siggy-824572.jpg",
         name: "ZZ plant",
         cost: 11,
         quantity: 0,

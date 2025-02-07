@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 export const airPurifyingPlantsSlice = createSlice({
-  name: 'airPurifyingPlant',
+  name: "airPurifyingPlant",
   initialState: [
     {
-      img: "",
+      img: "./src/assets/pexels-alinaskazka-16318288.jpg",
       name: "Peace Lily",
       cost: 14,
       quantity: 0,
   },
   {
-      img: "",
+      img: "./src/assets/pexels-charlotte-may-5825558.jpg",
       name: "Spider plant",
       cost: 15,
       quantity: 0,

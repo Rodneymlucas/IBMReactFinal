@@ -5,13 +5,13 @@ export const succulentPlantsSlice = createSlice({
   name: "succulentPlant",
   initialState: [
     {
-      img: "https://pixabay.com/images/download/chairs-2181916_640.jpg",
+      img: "./src/assets/pexels-rocketmann-prod-9507073.jpg",
       name: "Aloe vera",
       cost: 12,
       quantity: 0,
     },
     {
-      img: "https://pixabay.com/images/download/event-venue-1597531_640.jpg",
+      img: "./src/assets/pexels-kevin-malik-9032130.jpg",
       name: "Jade Plant",
       cost: 13,
       quantity: 0,
