@@ -7,7 +7,7 @@
 .first_page {
   display: flex;
   height: 100vh;
-  background-image: url("https://www.pexels.com/photo/person-people-flowers-garden-6508391/");
+  background-image: url("/images/pexels-orlovamaria-4947111.jpg");
   background-size: cover;
   background-position: center;
   justify-content: center;

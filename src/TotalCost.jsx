@@ -24,7 +24,7 @@ const TotalCost = ({ totalCosts, ItemsDisplay }) => {
                     </div>
                     <br />  
                     <br />
-                    <button className="details_button" onClick={() => setShowItems(!showItems)}>
+                    <button className="details_button" onClick={() => setShowItems(false)}>
                             Contine Shopping
                         </button>
 

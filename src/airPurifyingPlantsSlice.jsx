@@ -3,13 +3,13 @@ export const airPurifyingPlantsSlice = createSlice({
   name: "airPurifyingPlant",
   initialState: [
     {
-      img: "./src/assets/pexels-alinaskazka-16318288.jpg",
+      img: "/images/pexels-alinaskazka-16318288.jpg",
       name: "Peace Lily",
       cost: 14,
       quantity: 0,
   },
   {
-      img: "./src/assets/pexels-charlotte-may-5825558.jpg",
+      img: "/images/pexels-charlotte-may-5825558.jpg",
       name: "Spider plant",
       cost: 15,
       quantity: 0,

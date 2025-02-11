@@ -110,6 +110,7 @@ const ConferenceEvent = () => {
               <th>Unit Cost</th>
               <th>Quantity</th>
               <th>Subtotal</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -127,6 +128,7 @@ const ConferenceEvent = () => {
                 </td>
 
                 <td>${item.cost * item.quantity}</td>
+                <td><button className="addons-btn">Delete</button></td>
               </tr>
             ))}
           </tbody>
@@ -180,15 +182,15 @@ const ConferenceEvent = () => {
         <div className="company_logo">Phoenix House Plant Nursery</div>
         <div className="left_navbar">
           <div className="nav_links">
-            <a href="#succulentplant" onClick={() => navigateToProducts("#succulentplant")} >Succulent Plants</a>
-            <a href="#lowlightplant" onClick={() => navigateToProducts('#lowlightplant')}>Low Light Plants</a>
-            <a href="#airpurifyingplant" onClick={() => navigateToProducts('#airpurifyingplant')}>Air Purifying Plants</a>
+            <a href="#productpage" onClick={() => setShowItems(false)}>Product Listings</a>
+            <a href="#shoppingcartpage" onClick={() => setShowItems(true)}>Shopping Cart</a>
           </div>
-          <button className="details_button" onClick={() => setShowItems(!showItems)}>
-            🛒 Shopping Cart {calculateTotalItems()} Items
+          <button className="details_button" onClick={() => setShowItems(true)}>
+            🛒 {calculateTotalItems()} Items
           </button>
         </div>
       </navbar>
+
       <div className="main_container">
         {!showItems
           ?
@@ -214,7 +216,7 @@ const ConferenceEvent = () => {
                       <div className="addons_btn">
                         <button className="btn-warning" onClick={() => handleRemoveFromCart(index)}> &ndash; </button>
                         <span className="quantity-value">{item.quantity}</span>
-                        <button className=" btn-success" onClick={() => handleAddToCart(index)}> &#43; </button>
+                        <button className=" btn-success" onClick={() => handleAddToCart(index)}>Add to cart</button>
                       </div>
                     </div>
                   ))}
