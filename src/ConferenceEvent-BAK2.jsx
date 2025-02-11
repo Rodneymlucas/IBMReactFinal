@@ -8,8 +8,6 @@ import { incrementLowLightPlantsQuantity, decrementLowLightPlantsQuantity } from
 
 const ConferenceEvent = () => {
   const [showItems, setShowItems] = useState(false);
-  let pageToDisplay = 'Product';
-  let totalCartItems = 0;
   //const [numberOfPeople, setNumberOfPeople] = useState(1);
   const succulentPlantItems = useSelector((state) => state.succulentPlant);
   console.log('succulentPlantItems', succulentPlantItems);
@@ -52,22 +50,6 @@ const ConferenceEvent = () => {
       dispatch(decrementAirPurifyingPlantsQuantity(index));
     }
   };
-
-  const handleIncrementFromCheckout = (index) => {
-    //check item.type and call the respective increment function
-    //dispatch(incrementAirPurifyingPlantsQuantity(index));
-  };
-
-  const handleDecrementFromCheckout = (index) => {
-    //check item.type and call the respective decrement function
-    /*
-        if (airPurifyingPlantItems[index].quantity > 0) {
-          dispatch(decrementAirPurifyingPlantsQuantity(index));
-        }
-    */
-  };
-
-
 
   const getItemsFromTotalCost = () => {
     const items = [];
@@ -117,16 +99,6 @@ const ConferenceEvent = () => {
               <tr key={index}>
                 <td>{item.name}</td>
                 <td>${item.cost}</td>
-                <td>
-                  <div className="addons_btn">
-                    <button className="btn-warning" onClick={() => handleDecrementFromCheckout(index)}> &ndash; </button>
-                    <span className="quantity-value">{item.quantity}</span>
-                    <button className=" btn-success" onClick={() => handleIncrementFromCheckout(index)}> &#43; </button>
-                  </div>
-
-                </td>
-
-                <td>${item.cost * item.quantity}</td>
               </tr>
             ))}
           </tbody>
@@ -151,10 +123,6 @@ const ConferenceEvent = () => {
       });
     }
     return totalCost;
-  };
-
-  const calculateTotalItems = () => {
-    return items.length;
   };
 
   const succulentPlantsTotalCost = calculateTotalCost("succulentPlant");
@@ -185,7 +153,7 @@ const ConferenceEvent = () => {
             <a href="#airpurifyingplant" onClick={() => navigateToProducts('#airpurifyingplant')}>Air Purifying Plants</a>
           </div>
           <button className="details_button" onClick={() => setShowItems(!showItems)}>
-            🛒 Shopping Cart {calculateTotalItems()} Items
+            Shopping Cart
           </button>
         </div>
       </navbar>
@@ -194,38 +162,75 @@ const ConferenceEvent = () => {
           ?
           (
             <div className="items-information">
-
-              {/*section for succulentPlants*/}
-              <div id="addons" className="venue_container container_main">
-
+              <div id="venue" className="venue_container container_main">
                 <div className="text">
 
-                  <h1> Succulent Plants Selection</h1>
-
+                  <h1>Succulent Plants Selection</h1>
                 </div>
                 <div className="venue_selection">
                   {succulentPlantItems.map((item, index) => (
-                    <div className="av_data venue_main" key={index}>
+                    <div className="venue_main" key={index}>
                       <div className="img">
                         <img src={item.img} alt={item.name} />
                       </div>
-                      <div className="text"> {item.name} </div>
-                      <div> ${item.cost} </div>
-                      <div className="addons_btn">
-                        <button className="btn-warning" onClick={() => handleRemoveFromCart(index)}> &ndash; </button>
-                        <span className="quantity-value">{item.quantity}</span>
-                        <button className=" btn-success" onClick={() => handleAddToCart(index)}> &#43; </button>
+                      <div className="text">{item.name}</div>
+                      <div>${item.cost}</div>
+                      <div className="button_container">
+                        {succulentPlantItems[index].name === "Auditorium Hall (Capacity:200)" ? (
+
+                          <>
+                            <button
+                              className={succulentPlantItems[index].quantity === 0 ? "btn-warning btn-disabled" : "btn-minus btn-warning"}
+                              onClick={() => handleRemoveFromCart(index)}
+                            >
+                              &#8211;
+                            </button>
+                            <span className="selected_count">
+                              {succulentPlantItems[index].quantity > 0 ? ` ${succulentPlantItems[index].quantity}` : "0"}
+                            </span>
+                            <button
+                              className={remainingAuditoriumQuantity === 0 ? "btn-success btn-disabled" : "btn-success btn-plus"}
+                              onClick={() => handleAddToCart(index)}
+                            >
+                              &#43;
+                            </button>
+                          </>
+                        ) : (
+                          <div className="button_container">
+                            <button
+                              className={succulentPlantItems[index].quantity === 0 ? " btn-warning btn-disabled" : "btn-warning btn-plus"}
+                              onClick={() => handleRemoveFromCart(index)}
+                            >
+                              &#8211;
+                            </button>
+                            <span className="selected_count">
+                              {succulentPlantItems[index].quantity > 0 ? ` ${succulentPlantItems[index].quantity}` : "0"}
+                            </span>
+                            <button
+                              className={succulentPlantItems[index].quantity === 10 ? " btn-success btn-disabled" : "btn-success btn-plus"}
+                              onClick={() => handleAddToCart(index)}
+                            >
+                              &#43;
+                            </button>
+
+
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="total_cost">Total Cost: {succulentPlantsTotalCost}</div>
+                <div className="total_cost">Total Cost: ${succulentPlantsTotalCost}</div>
               </div>
 
-              {/*section for lowLightPlants*/}
+              {/*Necessary Add-ons*/}
               <div id="addons" className="venue_container container_main">
+
+
                 <div className="text">
+
                   <h1> Low Light Plants Selection</h1>
+
                 </div>
                 <div className="addons_selection">
                   {lowLightPlantItems.map((item, index) => (
@@ -236,9 +241,9 @@ const ConferenceEvent = () => {
                       <div className="text"> {item.name} </div>
                       <div> ${item.cost} </div>
                       <div className="addons_btn">
-                        <button className="btn-warning" onClick={() => handleDecrementLowLightPlantQuantity(index)}> &ndash; </button>
+                        <button className="btn-warning" onClick={() => handleDecrementLowLightQuantity(index)}> &ndash; </button>
                         <span className="quantity-value">{item.quantity}</span>
-                        <button className=" btn-success" onClick={() => handleIncrementLowLightPlantQuantity(index)}> &#43; </button>
+                        <button className=" btn-success" onClick={() => handleIncrementLowLightQuantity(index)}> &#43; </button>
                       </div>
                     </div>
                   ))}
@@ -246,28 +251,35 @@ const ConferenceEvent = () => {
                 <div className="total_cost">Total Cost: {lowLightPlantsTotalCost}</div>
               </div>
 
-              {/*section for airPurifyingPlants*/}
-              <div id="addons" className="venue_container container_main">
+              {/* Meal Section */}
+
+              <div id="meals" className="venue_container container_main">
+
                 <div className="text">
-                  <h1> Air Purifying Plants Selection</h1>
+
+                  <h1>Air Purifying Plants Selection</h1>
                 </div>
-                <div className="addons_selection">
+
+                <div className="input-container venue_selection">
+                  <div className="input-container venue_selection">
+                  </div>
+                </div>
+                <div className="meal_selection">
                   {airPurifyingPlantItems.map((item, index) => (
-                    <div className="av_data venue_main" key={index}>
-                      <div className="img">
-                        <img src={item.img} alt={item.name} />
+                    <div className="meal_item" key={index} style={{ padding: 15 }}>
+                      <div className="inner">
+                        <input type="checkbox" id={`meal_${index}`}
+                          checked={item.selected}
+                          onChange={() => handleAirPurifyingPlantlSelection(index)}
+                        />
+                        <label htmlFor={`meal_${index}`}> {item.name} </label>
                       </div>
-                      <div className="text"> {item.name} </div>
-                      <div> ${item.cost} </div>
-                      <div className="addons_btn">
-                        <button className="btn-warning" onClick={() => handleDecrementAirPurifyingPlantQuantity(index)}> &ndash; </button>
-                        <span className="quantity-value">{item.quantity}</span>
-                        <button className=" btn-success" onClick={() => handleIncrementAirPurifyingPlantQuantity(index)}> &#43; </button>
-                      </div>
+                      <div className="meal_cost">${item.cost}</div>
                     </div>
                   ))}
                 </div>
                 <div className="total_cost">Total Cost: {airPurifyingPlantsTotalCost}</div>
+
               </div>
             </div>
           ) : (
