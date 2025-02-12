@@ -11,14 +11,12 @@ const ConferenceEvent = () => {
   let pageToDisplay = 'Product';
   let totalCartItems = 0;
   //const [numberOfPeople, setNumberOfPeople] = useState(1);
-
   const succulentPlantItems = useSelector((state) => state.succulentPlant);
-  //console.log('succulentPlantItems', succulentPlantItems);
+  console.log('succulentPlantItems', succulentPlantItems);
   const lowLightPlantItems = useSelector((state) => state.lowLightPlant);
-  //console.log('lowLightPlantItems', lowLightPlantItems);
+  console.log('lowLightPlantItems', lowLightPlantItems);
   const airPurifyingPlantItems = useSelector((state) => state.airPurifyingPlant);
-  //console.log('airPurifyingPlantItems', airPurifyingPlantItems);
-
+  console.log('airPurifyingPlantItems', airPurifyingPlantItems);
   const dispatch = useDispatch();
   const handleToggleItems = () => {
     console.log("handleToggleItems called");
@@ -110,7 +108,6 @@ const ConferenceEvent = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Pic</th>
               <th>Unit Cost</th>
               <th>Quantity</th>
               <th>Subtotal</th>
@@ -121,7 +118,6 @@ const ConferenceEvent = () => {
             {items.map((item, index) => (
               <tr key={index}>
                 <td>{item.name}</td>
-                <td><img src={item.img}  /></td>
                 <td>${item.cost}</td>
                 <td>
                   <div className="addons_btn">
@@ -176,9 +172,9 @@ const ConferenceEvent = () => {
     }
   }
   const totalCosts = {
-    succulentPlants: succulentPlantsTotalCost,
-    lowLightPlants: lowLightPlantsTotalCost,
-    airPurifyingPlants: airPurifyingPlantsTotalCost,
+    succulentPlant: succulentPlantsTotalCost,
+    lowLightPlant: lowLightPlantsTotalCost,
+    airPurifying: airPurifyingPlantsTotalCost,
   };
 
   return (
